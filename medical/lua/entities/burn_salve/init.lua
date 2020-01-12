@@ -17,7 +17,7 @@ function ENT:Initialize()
 end
  
 function ENT:Use(activator, caller)
-	hasFracture = false
-	SMFracture(false, activator)
+	SMBurn(false, activator)
+	hasBurn = false
 	self:Remove()
 end

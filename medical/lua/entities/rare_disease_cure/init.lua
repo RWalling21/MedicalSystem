@@ -17,7 +17,7 @@ function ENT:Initialize()
 end
  
 function ENT:Use(activator, caller)
-	hasFracture = false
-	SMFracture(false, activator)
+	hasRareDisease = false
+	SMRareDisease(false, activator)
 	self:Remove()
 end

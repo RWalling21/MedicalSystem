@@ -18,6 +18,6 @@ end
  
 function ENT:Use(activator, caller)
 	SMBleeding(false, activator)
+	isBleeding = false
 	self:Remove()
-	-- Send notification to user saying that they are now healed
 end
