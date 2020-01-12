@@ -17,7 +17,7 @@ function ENT:Initialize()
 end
  
 function ENT:Use(activator, caller)
-	SMFracture(false, activator)
+	SMBleeding(false, activator)
 	self:Remove()
 	-- Send notification to user saying that they are now healed
 end
