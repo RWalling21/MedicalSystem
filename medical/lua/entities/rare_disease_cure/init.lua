@@ -2,7 +2,6 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
  
 include('shared.lua')
-include("autorun/server/init.lua") 
 
 function ENT:Initialize()
 	self:SetModel("models/hunter/blocks/cube05x05x05.mdl")
@@ -19,5 +18,7 @@ end
 function ENT:Use(activator, caller)
 	hasRareDisease = false
 	SMRareDisease(false, activator)
+	net.Start("SMHealed")
+	net.Send(activator)
 	self:Remove()
 end

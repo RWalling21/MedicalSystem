@@ -17,7 +17,15 @@ end
  
 function ENT:Use(activator, caller)
 	hasFracture = false
+	isBleeding = false
+	hasBurn = false
+	hasDisease = false
+	hasRareDisease = false
 	SMFracture(false, activator)
+	SMBleeding(false, activator)
+	SMBurn(false, activator)
+	SMDisease(false, activator)
+	SMRareDisease(false, activator)
 	net.Start("SMHealed")
 	net.Send(activator)
 	self:Remove()
