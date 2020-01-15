@@ -1,7 +1,9 @@
+--include("autorun/config/smconfig.lua")
+
 function SMFracture(enabled, ply) 
-    if enabled == true and ply:Alive() then
+    if enabled == true and fractureEnabled == true then
         hasFracture = true
-        GAMEMODE:SetPlayerSpeed(ply, 75, 80)
+        GAMEMODE:SetPlayerSpeed(ply, fractureWalkSpeed, fractureRunSpeed)
         ply:StopSprinting()
         ply:StopWalking()
         net.Start("SMFractureMSG")
@@ -12,12 +14,13 @@ function SMFracture(enabled, ply)
 end
 
 function SMBleeding(enabled, ply)
-   if enabled == true and ply:Alive() then
+   if enabled == true and bleedEnabled == true then
         isBleeding = true
         net.Start("SMBleedMSG")
         net.Send(ply)
-        timer.Create("SMBleedDmg", 5, 0, function() 
-            ply:TakeDamage(3) 
+        GAMEMODE:SetPlayerSpeed(ply, bleedWalkSpeed, bleedRunSpeed)
+        timer.Create("SMBleedDmg", bleedDelay, bleedLoop, function() 
+            ply:TakeDamage(bleedDMG) 
         end)
     elseif enabled == false then
         isBleeding = false
@@ -26,13 +29,13 @@ function SMBleeding(enabled, ply)
 end
 
 function SMBurn(enabled, ply)
-    if enabled == true and ply:Alive() then
+    if enabled == true and burnEnabled == true then
         hasBurn = true
         net.Start("SMBurnMSG")
         net.Send(ply)
-        GAMEMODE:SetPlayerSpeed(ply, 130, 200)
-        timer.Create("SMBurnDmg", 10, 0, function() 
-            ply:TakeDamage(2) 
+        GAMEMODE:SetPlayerSpeed(ply, burnWalkSpeed, burnRunSpeed)
+        timer.Create("SMBurnDmg", burnDelay, burnLoop, function() 
+            ply:TakeDamage(burnDMG) 
         end)
     elseif enabled == false then
         hasBurn = false
@@ -44,8 +47,9 @@ end
 function SMDisease(enabled, ply)
     if enabled == treu and ply:Alive() then
         hasDisease = true
-        timer.Create("SMDiseaseDMG", 20, 0, function() 
-            ply:TakeDamage(10)
+        GAMEMODE:SetPlayerSpeed(ply, diseaseWalkSpeed, diseaseRunSpeed)
+        timer.Create("SMDiseaseDMG", diseaseDelay, diseaseLoop, function() 
+            ply:TakeDamage(diseaseDMG)
         end)
     elseif enabled == false then
         timer.Stop("SMDiseaseDMG")

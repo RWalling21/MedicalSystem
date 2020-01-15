@@ -18,14 +18,19 @@ util.AddNetworkString("SMRareDisease")
 util.AddNetworkString("SMHealed")
 
 -- HOOKS
+hook.Add("GetFallDamage", "SMFallDamage", function(ply, speed) -- For fracture
+    if speed > 660 and hasFracture == false then -- higher percent chance higher speed
+        SMFracture(true, ply)
+    end
+end)
 
 hook.Add("EntityTakeDamage", "SMGeneralDamage", function(target, dmg) -- Any Damage
     if target:IsPlayer() and dmg:IsBulletDamage() and isBleeding == false then
-        if chance(1, 10) then
+        if chance(1, bleedProbability) then
             SMBleeding(true, target)
         end
     elseif target:IsPlayer() and dmg:IsDamageType(8) and hasBurn == false then
-        if chance(1, 5) then
+        if chance(1, burnProbability) then
             SMBurn(true, target)
         end
     --elseif target:IsPlayer() then  Add later
@@ -35,14 +40,11 @@ hook.Add("EntityTakeDamage", "SMGeneralDamage", function(target, dmg) -- Any Dam
     end
 end)
 
-hook.Add("GetFallDamage", "SMFallDamage", function(ply, speed) -- For fracture
-    if speed > 660 and hasFracture == false then -- higher percent chance higher speed
-        SMFracture(true, ply)
-    end
-end)
-
 hook.Add("PlayerDeath", "SMDie", function(ply)
     SMBleeding(false, ply)
+    SMBurn(false, ply)
+    SMDisease(false, ply)
+    SMRareDisease(false, ply)
     hasFracture = false
     isBleeding = false
     hasBurn = false
