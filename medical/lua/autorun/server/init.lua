@@ -1,14 +1,14 @@
 -- SETUP
 AddCSLuaFile("autorun/client/cl_init.lua")
 AddCSLuaFile("autorun/shared/sh_init.lua")
+AddCSLuaFile("autorun/config/sm_config.lua")
 
 include("autorun/shared/sh_init.lua")
+include("autorun/config/sm_config.lua")
 
 hasFracture = false -- Make more efficent 
 isBleeding = false
 hasBurn = false
-hasDisease = false
-hasRareDisease = false
 
 util.AddNetworkString("SMFractureMSG")
 util.AddNetworkString("SMBleedMSG")

@@ -1,4 +1,4 @@
---include("autorun/config/smconfig.lua")
+include("autorun/config/sm_config.lua")
 
 function SMFracture(enabled, ply) 
     if enabled == true and fractureEnabled == true then
@@ -45,9 +45,7 @@ function SMBurn(enabled, ply)
 end
 
 function SMDisease(enabled, ply)
-    if enabled == treu and ply:Alive() then
-        hasDisease = true
-        GAMEMODE:SetPlayerSpeed(ply, diseaseWalkSpeed, diseaseRunSpeed)
+    if enabled == true and diseaseEnabled == true then
         timer.Create("SMDiseaseDMG", diseaseDelay, diseaseLoop, function() 
             ply:TakeDamage(diseaseDMG)
         end)
@@ -57,10 +55,10 @@ function SMDisease(enabled, ply)
 end
 
 function SMRareDisease(enabled, ply)
-    if enabled == treu and ply:Alive() then
-        hasDisease = true
-        timer.Create("SMRareDiseaseDMG", 30, 0, function() 
-            ply:TakeDamage(25)
+    if enabled == true and rareDiseaseEnabled == true then
+        timer.Create("SMRareDiseaseDMG", rareDiseaseDelay, rareDiseaseLoop, function() 
+            print("RDDMG")
+            ply:TakeDamage(rareDiseaseDMG) -- Broken
         end)
     elseif enabled == false then
         timer.Stop("SMRareDiseaseDMG")
