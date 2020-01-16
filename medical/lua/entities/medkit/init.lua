@@ -1,6 +1,7 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
  
+include("autorun/config/sm_config.lua")
 include('shared.lua')
 
 function ENT:Initialize()
@@ -26,5 +27,15 @@ function ENT:Use(activator, caller)
 	SMDisease(false, activator)
 	net.Start("SMHealed")
 	net.Send(activator)
+	if activator:Health() >= activator:GetMaxHealth() then
+		activator:SetHealth(activator:GetMaxHealth())
+	else
+		hp = activator:Health() + medkitHP
+		if hp >= activator:GetMaxHealth() then
+			activator:SetHealth(activator:GetMaxHealth())
+		else
+			activator:SetHealth(activator:Health() + medkitHP) -- Can do over max
+		end
+	end
 	self:Remove()
 end

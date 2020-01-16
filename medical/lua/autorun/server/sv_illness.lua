@@ -21,10 +21,13 @@ function SMBleeding(enabled, ply)
         GAMEMODE:SetPlayerSpeed(ply, bleedWalkSpeed, bleedRunSpeed)
         timer.Create("SMBleedDmg", bleedDelay, bleedLoop, function() 
             ply:TakeDamage(bleedDMG) 
+            net.Start("SMDmgSound")
+            net.Send(ply)
         end)
     elseif enabled == false then
         isBleeding = false
         timer.Stop("SMBleedDmg")
+        GAMEMODE:SetPlayerSpeed(ply, 160, 240)
     end     
 end
 
@@ -36,6 +39,8 @@ function SMBurn(enabled, ply)
         GAMEMODE:SetPlayerSpeed(ply, burnWalkSpeed, burnRunSpeed)
         timer.Create("SMBurnDmg", burnDelay, burnLoop, function() 
             ply:TakeDamage(burnDMG) 
+            net.Start("SMDmgSound")
+            net.Send(ply)
         end)
     elseif enabled == false then
         hasBurn = false
@@ -51,6 +56,8 @@ function SMDisease(enabled, ply)
         net.Send(ply)
         timer.Create("SMDiseaseDMG", diseaseDelay, diseaseLoop, function() 
             ply:TakeDamage(diseaseDMG)
+            net.Start("SMDmgSound")
+            net.Send(ply)
         end)
     elseif enabled == false then
         timer.Stop("SMDiseaseDMG")
@@ -64,6 +71,8 @@ function SMRareDisease(enabled, ply)
         net.Send(ply)
         timer.Create("SMRareDiseaseDMG", rareDiseaseDelay, rareDiseaseLoop, function() 
             ply:TakeDamage(rareDiseaseDMG)
+            net.Start("SMDmgSound")
+            net.Send(ply)
         end)
     elseif enabled == false then
         timer.Stop("SMRareDiseaseDMG")

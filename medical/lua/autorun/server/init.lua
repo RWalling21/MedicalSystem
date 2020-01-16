@@ -13,10 +13,12 @@ util.AddNetworkString("SMDiseaseCall")
 util.AddNetworkString("SMDiseaseMSG")
 util.AddNetworkString("SMRareDiseaseMSG")
 util.AddNetworkString("SMHealed")
+util.AddNetworkString("SMDmgSound")
+
 
 -- HOOKS
 hook.Add("GetFallDamage", "SMFallDamage", function(ply, speed) -- For fracture
-    if speed > 660 and hasFracture == false then -- higher percent chance higher speed
+    if speed > fractureFallSpeed and hasFracture == false then -- higher percent chance higher speed
         SMFracture(true, ply)
     end
 end)
