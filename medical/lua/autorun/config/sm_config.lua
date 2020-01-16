@@ -25,16 +25,16 @@ burnRunSpeed = 200 -- Runspeed after condition default is 240
 
 --Disease
 diseaseEnabled = true -- Enables / Disables condition
-diseaseProbability = 12 -- 1/x chance for getting condition (2 is 50% chance, 4 is 25% chance)
-diseaseApply = 300 -- Delay in seconds that diseases are given to players
-diseaseDelay = 15 -- Delay in seconds for condition damage
+diseaseProbability = 1 -- 1/x chance for getting condition (2 is 50% chance, 4 is 25% chance)
+diseaseApply = 25 -- Delay in seconds that diseases are given to players
+diseaseDelay = 5 -- Delay in seconds for condition damage
 diseaseLoop = 0 -- How many times condition damage loops, 0 is unlimited
 diseaseDMG = 10 -- How much damage condition applys every loop
 
 --Rare Disease
 rareDiseaseEnabled = true -- Enables / Disables condition
-rareDiseaseProbability = 1 -- 1/x chance for getting condition (2 is 50% chance, 4 is 25% chance)
-rareDiseaseApply = 60 -- Delay in seconds that diseases are given to players
+rareDiseaseProbability = 96 -- 1/x chance for getting condition (2 is 50% chance, 4 is 25% chance)
+rareDiseaseApply = 900 -- Delay in seconds that diseases are given to players
 rareDiseaseDelay = 25 -- Delay in seconds for condition damage
 rareDiseaseLoop = 0 -- How many times condition damage loops, 0 is unlimited
 rareDiseaseDMG = 25 -- How much damage condition applys every loop

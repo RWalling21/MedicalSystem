@@ -6,15 +6,12 @@ AddCSLuaFile("autorun/config/sm_config.lua")
 include("autorun/shared/sh_init.lua")
 include("autorun/config/sm_config.lua")
 
-hasFracture = false -- Make more efficent 
-isBleeding = false
-hasBurn = false
-
 util.AddNetworkString("SMFractureMSG")
 util.AddNetworkString("SMBleedMSG")
 util.AddNetworkString("SMBurnMSG")
-util.AddNetworkString("SMDisease")
-util.AddNetworkString("SMRareDisease")
+util.AddNetworkString("SMDiseaseCall")
+util.AddNetworkString("SMDiseaseMSG")
+util.AddNetworkString("SMRareDiseaseMSG")
 util.AddNetworkString("SMHealed")
 
 -- HOOKS
@@ -33,12 +30,25 @@ hook.Add("EntityTakeDamage", "SMGeneralDamage", function(target, dmg) -- Any Dam
         if chance(1, burnProbability) then
             SMBurn(true, target)
         end
-    --elseif target:IsPlayer() then  Add later
-        --if chance(1, 80) then
-            --print("God that hurts!")
-        --end
     end
 end)
+
+function SMDiseaseInit(ply)
+    print("Disease Clock initialized")
+    timer.Create("SMDisease", diseaseApply, 0, function() -- On average you will get a disease every 1 hour of play time
+        if chance(1, diseaseProbability) and hasDisease == false then
+            SMDisease(true, ply)
+        end
+    end)
+
+    timer.Create("SMRareDisease", rareDiseaseApply, 0, function() -- On average you will get a rare disease every 24 hours of playtime
+        print(hasRareDisease)
+        if chance(1, rareDiseaseProbability) and hasRareDisease == false then
+            print("CHUNGUS")
+            SMRareDisease(true, ply)
+        end
+    end) 
+end
 
 hook.Add("PlayerDeath", "SMDie", function(ply)
     SMBleeding(false, ply)

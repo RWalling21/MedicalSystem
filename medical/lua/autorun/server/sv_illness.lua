@@ -46,6 +46,9 @@ end
 
 function SMDisease(enabled, ply)
     if enabled == true and diseaseEnabled == true then
+        hasDisease = true
+        net.Start("SMDiseaseMSG")
+        net.Send(ply)
         timer.Create("SMDiseaseDMG", diseaseDelay, diseaseLoop, function() 
             ply:TakeDamage(diseaseDMG)
         end)
@@ -55,10 +58,12 @@ function SMDisease(enabled, ply)
 end
 
 function SMRareDisease(enabled, ply)
-    if enabled == true and rareDiseaseEnabled == true then
+    if enabled == true and diseaseEnabled == true then
+        hasRareDisease = true
+        net.Start("SMRareDiseaseMSG")
+        net.Send(ply)
         timer.Create("SMRareDiseaseDMG", rareDiseaseDelay, rareDiseaseLoop, function() 
-            print("RDDMG")
-            ply:TakeDamage(rareDiseaseDMG) -- Broken
+            ply:TakeDamage(rareDiseaseDMG)
         end)
     elseif enabled == false then
         timer.Stop("SMRareDiseaseDMG")
