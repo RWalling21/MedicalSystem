@@ -1,5 +1,6 @@
 -- SETUP
 AddCSLuaFile("autorun/client/cl_init.lua")
+AddCSLuaFile("autorun/client/cl_postprocess.lua")
 AddCSLuaFile("autorun/shared/sh_init.lua")
 AddCSLuaFile("autorun/config/sm_config.lua")
 
@@ -9,10 +10,14 @@ include("autorun/config/sm_config.lua")
 util.AddNetworkString("SMFractureMSG")
 util.AddNetworkString("SMBleedMSG")
 util.AddNetworkString("SMBurnMSG")
-util.AddNetworkString("SMDiseaseCall")
 util.AddNetworkString("SMDiseaseMSG")
 util.AddNetworkString("SMRareDiseaseMSG")
-util.AddNetworkString("SMHealed")
+util.AddNetworkString("SMDiseaseCall")
+util.AddNetworkString("SMFractureHealed")
+util.AddNetworkString("SMBleedHealed")
+util.AddNetworkString("SMBurnHealed")
+util.AddNetworkString("SMDiseaseHealed")
+util.AddNetworkString("SMRareDiseaseHealed")
 util.AddNetworkString("SMDmgSound")
 
 
@@ -49,7 +54,7 @@ function SMDiseaseInit(ply)
             print("CHUNGUS")
             SMRareDisease(true, ply)
         end
-    end) 
+    end)
 end
 
 hook.Add("PlayerDeath", "SMDie", function(ply)
@@ -57,6 +62,10 @@ hook.Add("PlayerDeath", "SMDie", function(ply)
     SMBurn(false, ply)
     SMDisease(false, ply)
     SMRareDisease(false, ply)
+    ----
+    SMFracturePP(false)
+    SMBleedPP(false)
+    ----
     hasFracture = false
     isBleeding = false
     hasBurn = false

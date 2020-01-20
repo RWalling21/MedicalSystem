@@ -1,4 +1,4 @@
 net.Receive("SMDiseaseCall", function()
-    ply = net.ReadEntity()
+    local ply = net.ReadEntity()
     SMDiseaseInit(ply)
 end)

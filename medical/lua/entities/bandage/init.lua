@@ -1,6 +1,6 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
- 
+
 include('shared.lua')
 
 function ENT:Initialize()
@@ -8,17 +8,16 @@ function ENT:Initialize()
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)
- 
+
         local phys = self:GetPhysicsObject()
 	if (phys:IsValid()) then
 		phys:Wake()
 	end
 end
- 
+
 function ENT:Use(activator, caller)
 	SMBleeding(false, activator)
-	isBleeding = false
-	net.Start("SMHealed")
+	net.Start("SMBleedHealed")
 	net.Send(activator)
 	self:Remove()
 end

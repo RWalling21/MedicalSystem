@@ -4,7 +4,7 @@ function SMFracturePopup()
 end
 
 function SMBleedPopup()
-    notification.AddLegacy(bleedeNotifText, NOTIFY_GENERIC, bleedNotifTime)
+    notification.AddLegacy(bleedNotifText, NOTIFY_GENERIC, bleedNotifTime)
     surface.PlaySound("buttons/button14.wav")
 end
 
@@ -23,6 +23,12 @@ function SMRareDiseasePopup()
     surface.PlaySound("buttons/button14.wav") -- Play a more threatining sound
 end
 
-function SMHealedPopup()
-    notification.AddLegacy(healedNotifText, NOTIFY_GENERIC, healedNotifTime)
+-------------------------------------------------------------------------------------------
+
+function SMFractureHealedPopup()
+    notification.AddLegacy(fractureHealedNotifText, NOTIFY_GENERIC, fractureHealedNotifTime)
+end
+
+function SMBleedHealedPopup()
+    notification.AddLegacy(bleedHealedNotifText, NOTIFY_GENERIC, bleedHealedNotifTime)
 end

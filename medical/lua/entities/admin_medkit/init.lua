@@ -1,6 +1,6 @@
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
- 
+
 include('shared.lua')
 include("autorun/config/sm_config.lua")
 
@@ -9,13 +9,13 @@ function ENT:Initialize()
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)
- 
+
         local phys = self:GetPhysicsObject()
 	if (phys:IsValid()) then
 		phys:Wake()
 	end
 end
- 
+
 function ENT:Use(activator, caller)
 	hasFracture = false
 	isBleeding = false
@@ -32,11 +32,11 @@ function ENT:Use(activator, caller)
 	if activator:Health() >= activator:GetMaxHealth() then
 		activator:SetHealth(activator:GetMaxHealth())
 	else
-		hp = activator:Health() + medkitHP
+		local hp = activator:Health() + admnMedkitHP
 		if hp >= activator:GetMaxHealth() then
 			activator:SetHealth(activator:GetMaxHealth())
 		else
-			activator:SetHealth(activator:Health() + medkitHP) -- Can do over max
+			activator:SetHealth(activator:Health() + admnMedkitHP)
 		end
 	end
 	self:Remove()

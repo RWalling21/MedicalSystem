@@ -45,28 +45,30 @@ rareDiseaseDMG = 25
 --Notifications
 
 --Fracture
-fractureNotifText = "You have fractured your leg!" -- Notification text displayed 
+fractureNotifText = "You have fractured your leg!" -- Notification text displayed
 fractureNotifTime = 4 -- How long the notification will be shown
+fractureHealedNotifText = "You have healed your fracture!"
+fractureHealedNotifTime = 4
 
 --Bleed
-bleedeNotifText = "You are bleeding!" -- Notification text displayed 
+bleedNotifText = "You are bleeding!" -- Notification text displayed
 bleedNotifTime = 4 -- How long the notification will be shown
+bleedHealedNotifText = "You have stopped bleeding!"
+bleedHealedNotifTime = 4
+
 
 --Burn
-burnNotifText = "You have a nasty burn!" -- Notification text displayed 
+burnNotifText = "You have a nasty burn!" -- Notification text displayed
 burnNotifTime = 4 -- How long the notification will be shown
 
 --Disease
-diseaseNotifText = "You have come down with a disease!" -- Notification text displayed 
+diseaseNotifText = "You have come down with a disease!" -- Notification text displayed
 diseaseNotifTime = 4 -- How long the notification will be shown
 
 --Rare Disease
-rareDiseaseNotifText = "You have come down with a RARE disease! Get help ASAP!" -- Notification text displayed 
+rareDiseaseNotifText = "You have come down with a RARE disease! Get help ASAP!" -- Notification text displayed
 rareDiseaseNotifTime = 6 -- How long the notification will be shown
 
--- Healed
-healedNotifText = "You have been healed!"
-healedNotifTime = 4
 -----------------------------------------------------------------------------
 --Entities
 medkitHP = 25 --HP given to player on medkit use

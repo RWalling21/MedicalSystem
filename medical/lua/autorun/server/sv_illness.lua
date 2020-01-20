@@ -1,6 +1,7 @@
 include("autorun/config/sm_config.lua")
+include("autorun/client/cl_postprocess.lua")
 
-function SMFracture(enabled, ply) 
+function SMFracture(enabled, ply)
     if enabled == true and fractureEnabled == true then
         hasFracture = true
         GAMEMODE:SetPlayerSpeed(ply, fractureWalkSpeed, fractureRunSpeed)
@@ -19,8 +20,8 @@ function SMBleeding(enabled, ply)
         net.Start("SMBleedMSG")
         net.Send(ply)
         GAMEMODE:SetPlayerSpeed(ply, bleedWalkSpeed, bleedRunSpeed)
-        timer.Create("SMBleedDmg", bleedDelay, bleedLoop, function() 
-            ply:TakeDamage(bleedDMG) 
+        timer.Create("SMBleedDmg", bleedDelay, bleedLoop, function()
+            ply:TakeDamage(bleedDMG)
             net.Start("SMDmgSound")
             net.Send(ply)
         end)
@@ -28,7 +29,7 @@ function SMBleeding(enabled, ply)
         isBleeding = false
         timer.Stop("SMBleedDmg")
         GAMEMODE:SetPlayerSpeed(ply, 160, 240)
-    end     
+    end
 end
 
 function SMBurn(enabled, ply)
@@ -37,8 +38,8 @@ function SMBurn(enabled, ply)
         net.Start("SMBurnMSG")
         net.Send(ply)
         GAMEMODE:SetPlayerSpeed(ply, burnWalkSpeed, burnRunSpeed)
-        timer.Create("SMBurnDmg", burnDelay, burnLoop, function() 
-            ply:TakeDamage(burnDMG) 
+        timer.Create("SMBurnDmg", burnDelay, burnLoop, function()
+            ply:TakeDamage(burnDMG)
             net.Start("SMDmgSound")
             net.Send(ply)
         end)
@@ -54,7 +55,7 @@ function SMDisease(enabled, ply)
         hasDisease = true
         net.Start("SMDiseaseMSG")
         net.Send(ply)
-        timer.Create("SMDiseaseDMG", diseaseDelay, diseaseLoop, function() 
+        timer.Create("SMDiseaseDMG", diseaseDelay, diseaseLoop, function()
             ply:TakeDamage(diseaseDMG)
             net.Start("SMDmgSound")
             net.Send(ply)
@@ -69,7 +70,7 @@ function SMRareDisease(enabled, ply)
         hasRareDisease = true
         net.Start("SMRareDiseaseMSG")
         net.Send(ply)
-        timer.Create("SMRareDiseaseDMG", rareDiseaseDelay, rareDiseaseLoop, function() 
+        timer.Create("SMRareDiseaseDMG", rareDiseaseDelay, rareDiseaseLoop, function()
             ply:TakeDamage(rareDiseaseDMG)
             net.Start("SMDmgSound")
             net.Send(ply)
