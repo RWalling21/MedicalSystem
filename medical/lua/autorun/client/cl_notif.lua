@@ -20,7 +20,7 @@ end
 
 function SMRareDiseasePopup()
     notification.AddLegacy(rareDiseaseNotifText, NOTIFY_GENERIC, rareDiseaseNotifTime)
-    surface.PlaySound("buttons/button14.wav") -- Play a more threatining sound
+    surface.PlaySound("buttons/button14.wav") -- Play a more threatining sound (For all)
 end
 
 -------------------------------------------------------------------------------------------

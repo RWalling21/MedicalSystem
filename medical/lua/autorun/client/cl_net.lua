@@ -58,7 +58,7 @@ end)
 
 net.Receive("SMMedkitHealed", function()
     SMMedkitPopup()
-    SMFracturePP(false) -- Fix this later
+    SMFracturePP(false)
     surface.PlaySound("items/smallmedkit1.wav")
 end)
 

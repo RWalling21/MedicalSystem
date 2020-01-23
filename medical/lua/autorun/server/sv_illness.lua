@@ -1,9 +1,11 @@
 include("autorun/config/sm_config.lua")
 include("autorun/client/cl_postprocess.lua")
 
-function SMFracture(enabled, ply)
-    if enabled == true and fractureEnabled == true then
-        --print(ply:Nick())
+------------------------------------------------------------------------------------------------
+
+function SMFracture(enabled, target)
+    if enabled and fractureEnabled then
+        ply = target
         hasFracture = true
         GAMEMODE:SetPlayerSpeed(ply, fractureWalkSpeed, fractureRunSpeed)
         ply:StopSprinting()
@@ -15,8 +17,9 @@ function SMFracture(enabled, ply)
     end
 end
 
-function SMBleeding(enabled, ply)
-   if enabled == true and bleedEnabled == true then
+function SMBleeding(enabled, target)
+   if enabled and bleedEnabled then
+        ply = target
         isBleeding = true
         net.Start("SMBleedMSG")
         net.Send(ply)
@@ -33,8 +36,9 @@ function SMBleeding(enabled, ply)
     end
 end
 
-function SMBurn(enabled, ply)
-    if enabled == true and burnEnabled == true then
+function SMBurn(enabled, target)
+    if enabled and burnEnabled then
+        ply = target
         hasBurn = true
         net.Start("SMBurnMSG")
         net.Send(ply)
@@ -51,8 +55,9 @@ function SMBurn(enabled, ply)
     end
 end
 
-function SMDisease(enabled, ply)
-    if enabled == true and diseaseEnabled == true then
+function SMDisease(enabled, target)
+    if enabled and diseaseEnabled then
+        ply = target
         hasDisease = true
         net.Start("SMDiseaseMSG")
         net.Send(ply)
@@ -66,8 +71,9 @@ function SMDisease(enabled, ply)
     end
 end
 
-function SMRareDisease(enabled, ply)
-    if enabled == true and diseaseEnabled == true then
+function SMRareDisease(enabled, target)
+    if enabled and diseaseEnabled then
+        ply = target
         hasRareDisease = true
         net.Start("SMRareDiseaseMSG")
         net.Send(ply)
@@ -79,4 +85,36 @@ function SMRareDisease(enabled, ply)
     elseif enabled == false then
         timer.Stop("SMRareDiseaseDMG")
     end
+end
+
+------------------------------------------------------------------------------------------------
+
+function SMDiseaseInit(ply)
+    timer.Create("SMDisease", diseaseApply, 0, function() -- On average you will get a disease every 1 hour of play time
+        if chance(1, diseaseProbability) and hasDisease == false then
+            SMDisease(true, ply)
+        end
+    end)
+
+    timer.Create("SMRareDisease", rareDiseaseApply, 0, function() -- On average you will get a rare disease every 24 hours of playtime
+        if chance(1, rareDiseaseProbability) and hasRareDisease == false then
+            SMRareDisease(true, ply)
+        end
+    end)
+end
+
+function SMDeactivate(ply)
+    SMBleeding(false, ply)
+    SMBurn(false, ply)
+    SMDisease(false, ply)
+    SMRareDisease(false, ply)
+    ----
+    net.Start("SMPlyDie")
+    net.Send(ply)
+    ----
+    hasFracture = false
+    isBleeding = false
+    hasBurn = false
+    hasDisease = false
+    hasRareDisease = false
 end

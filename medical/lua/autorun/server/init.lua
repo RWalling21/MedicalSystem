@@ -26,8 +26,8 @@ util.AddNetworkString("SMCant")
 
 
 -- HOOKS
-hook.Add("GetFallDamage", "SMFallDamage", function(ply, speed) -- For fracture
-    if speed > fractureFallSpeed and hasFracture == false then -- higher percent chance higher speed
+hook.Add("GetFallDamage", "SMFallDamage", function(ply, speed)
+    if speed > fractureFallSpeed and hasFracture == false then
         SMFracture(true, ply)
     end
 end)
@@ -44,49 +44,10 @@ hook.Add("EntityTakeDamage", "SMGeneralDamage", function(target, dmg) -- Any Dam
     end
 end)
 
-function SMDiseaseInit(ply)
-    print("Disease Clock initialized")
-    timer.Create("SMDisease", diseaseApply, 0, function() -- On average you will get a disease every 1 hour of play time
-        if chance(1, diseaseProbability) and hasDisease == false then
-            SMDisease(true, ply)
-        end
-    end)
-
-    timer.Create("SMRareDisease", rareDiseaseApply, 0, function() -- On average you will get a rare disease every 24 hours of playtime
-        if chance(1, rareDiseaseProbability) and hasRareDisease == false then
-            SMRareDisease(true, ply)
-        end
-    end)
-end
-
 hook.Add("PlayerDeath", "SMDie", function(ply)
-    SMBleeding(false, ply)
-    SMBurn(false, ply)
-    SMDisease(false, ply)
-    SMRareDisease(false, ply)
-    ----
-    net.Start("SMPlyDie")
-    net.Send(ply)
-    ----
-    hasFracture = false
-    isBleeding = false
-    hasBurn = false
-    hasDisease = false
-    hasRareDisease = false
+    SMDeactivate(ply)
 end)
 
 hook.Add("PlayerDisconnected", "SMDC", function(ply)
-    SMBleeding(false, ply)
-    SMBurn(false, ply)
-    SMDisease(false, ply)
-    SMRareDisease(false, ply)
-    ----
-    net.Start("SMPlyDie")
-    net.Send(ply)
-    ----
-    hasFracture = false
-    isBleeding = false
-    hasBurn = false
-    hasDisease = false
-    hasRareDisease = false
+    SMDeactivate(ply)
 end)
