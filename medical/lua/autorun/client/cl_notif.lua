@@ -48,3 +48,7 @@ end
 function SMMedkitPopup()
     notification.AddLegacy(medkitHealedNotifText, NOTIFY_GENERIC, medkitHealedNotifTime)
 end
+
+function SMCant()
+    notification.AddLegacy(cantUseNotifText, NOTIFY_GENERIC, cantUseNotifTime)
+end

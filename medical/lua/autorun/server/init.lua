@@ -7,6 +7,7 @@ AddCSLuaFile("autorun/config/sm_config.lua")
 include("autorun/shared/sh_init.lua")
 include("autorun/config/sm_config.lua")
 
+-- Do we really need all these Network strings?
 util.AddNetworkString("SMFractureMSG")
 util.AddNetworkString("SMBleedMSG")
 util.AddNetworkString("SMBurnMSG")
@@ -20,6 +21,8 @@ util.AddNetworkString("SMDiseaseHealed")
 util.AddNetworkString("SMRareDiseaseHealed")
 util.AddNetworkString("SMMedkitHealed")
 util.AddNetworkString("SMDmgSound")
+util.AddNetworkString("SMPlyDie")
+util.AddNetworkString("SMCant")
 
 
 -- HOOKS
@@ -62,11 +65,24 @@ hook.Add("PlayerDeath", "SMDie", function(ply)
     SMDisease(false, ply)
     SMRareDisease(false, ply)
     ----
-    SMFracturePP(false)
-    SMBleedPP(false)
-    SMBurnPP(false)
-    SMDiseasePP(false)
-    SMRareDiseasePP(false)
+    net.Start("SMPlyDie")
+    net.Send(ply)
+    ----
+    hasFracture = false
+    isBleeding = false
+    hasBurn = false
+    hasDisease = false
+    hasRareDisease = false
+end)
+
+hook.Add("PlayerDisconnected", "SMDC", function(ply)
+    SMBleeding(false, ply)
+    SMBurn(false, ply)
+    SMDisease(false, ply)
+    SMRareDisease(false, ply)
+    ----
+    net.Start("SMPlyDie")
+    net.Send(ply)
     ----
     hasFracture = false
     isBleeding = false

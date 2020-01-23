@@ -78,6 +78,9 @@ rareDiseaseHealedNotifTime = 4
 medkitHealedNotifText = "The medkit cured your ailments!"
 medkitHealedNotifTime = 4
 
+cantUseNotifText = "I'm sorry, you cannot use this item"
+cantUseNotifTime = 4
+
 -----------------------------------------------------------------------------
 --Entities
 medkitHP = 25 --HP given to player on medkit use

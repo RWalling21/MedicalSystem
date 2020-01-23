@@ -23,7 +23,7 @@ local burn = {
 
 
 function SMFracturePP(enabled)
-	hook.Add("RenderScreenspaceEffects", "SMPP", function()
+	hook.Add("RenderScreenspaceEffects", "SMFPP", function()
 		if enabled == true then
 			DrawToyTown(5, ScrH()/ 2)
 		else
@@ -32,7 +32,7 @@ function SMFracturePP(enabled)
 end
 
 function SMBleedPP(enabled)
-	hook.Add("RenderScreenspaceEffects", "SMPP", function()
+	hook.Add("RenderScreenspaceEffects", "SMBLPP", function()
 		if enabled == true then
 			DrawColorModify(blood)
 			DrawToyTown(5, ScrH()/ 2)
@@ -43,7 +43,7 @@ function SMBleedPP(enabled)
 end
 
 function SMBurnPP(enabled)
-	hook.Add("RenderScreenspaceEffects", "SMPP", function()
+	hook.Add("RenderScreenspaceEffects", "SMBUPP", function()
 		if enabled == true then
 			DrawColorModify(burn)
 			DrawToyTown(5, ScrH()/ 2)
@@ -53,7 +53,7 @@ function SMBurnPP(enabled)
 end
 
 function SMDiseasePP(enabled)
-	hook.Add("RenderScreenspaceEffects", "SMPP", function()
+	hook.Add("RenderScreenspaceEffects", "SMDPP", function()
 		if enabled == true then
 			DrawMotionBlur(0.4, 0.8, 0.01)
 			DrawSharpen(1.2, 1.2)
@@ -64,7 +64,7 @@ function SMDiseasePP(enabled)
 end
 
 function SMRareDiseasePP(enabled)
-	hook.Add("RenderScreenspaceEffects", "SMPP", function()
+	hook.Add("RenderScreenspaceEffects", "SMRDPP", function()
 		if enabled == true then
 			DrawMotionBlur(0.6, 1, 0.01)
 			DrawSharpen(1.4, 1.4)

@@ -5,11 +5,11 @@ include('shared.lua')
 include("autorun/config/sm_config.lua")
 
 function ENT:Initialize()
-	self:SetModel("models/hunter/blocks/cube05x05x05.mdl")
+	self:SetModel("models/weapons/w_medkit.mdl")
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)
-
+	self:SetUseType(3)
         local phys = self:GetPhysicsObject()
 	if (phys:IsValid()) then
 		phys:Wake()
@@ -17,20 +17,29 @@ function ENT:Initialize()
 end
 
 function ENT:Use(activator, caller)
-	hasFracture = false
-	isBleeding = false
-	hasBurn = false
-	hasDisease = false
-	hasRareDisease = false
-	SMFracture(false, activator)
-	SMBleeding(false, activator)
-	SMBurn(false, activator)
-	SMDisease(false, activator)
-	SMRareDisease(false, activator)
-	net.Start("SMMedkitHealed")
-	net.Send(activator)
+	if hasFracture then
+		hasFracture = false
+		SMFracture(false, activator)
+	end
+	if isBleeding then
+		isBleeding = false
+		SMBleeding(false, activator)
+	end
+	if hasBurn then
+		hasBurn = false
+		SMBurn(false, activator)
+	end
+	if hasDisease then
+		hasDisease = false
+		SMDisease(false, activator)
+	end
+	if hasRareDisease then
+		hasRareDisease = false
+		SMRareDisease(false, activator)
+	end
 	if activator:Health() >= activator:GetMaxHealth() then
-		activator:SetHealth(activator:GetMaxHealth())
+		net.Start("SMCant")
+		net.Send(activator)
 	else
 		local hp = activator:Health() + admnMedkitHP
 		if hp >= activator:GetMaxHealth() then
@@ -38,6 +47,8 @@ function ENT:Use(activator, caller)
 		else
 			activator:SetHealth(activator:Health() + admnMedkitHP)
 		end
+		net.Start("SMMedkitHealed")
+		net.Send(activator)
+		self:Remove()
 	end
-	self:Remove()
 end

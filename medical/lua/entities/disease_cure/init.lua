@@ -8,7 +8,7 @@ function ENT:Initialize()
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)
- 
+	self:SetUseType(3)
         local phys = self:GetPhysicsObject()
 	if (phys:IsValid()) then
 		phys:Wake()
@@ -16,9 +16,14 @@ function ENT:Initialize()
 end
  
 function ENT:Use(activator, caller)
-	hasDisease = false
-	SMDisease(false, activator)
-	net.Start("SMDiseaseHealed")
-	net.Send(activator)
-	self:Remove()
+	if hasDisease then
+		hasDisease = false
+		SMDisease(false, activator)
+		net.Start("SMDiseaseHealed")
+		net.Send(activator)
+		self:Remove()
+	else
+		net.Start("SMCant")
+		net.Send(activator)
+	end
 end
