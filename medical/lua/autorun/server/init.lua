@@ -18,6 +18,7 @@ util.AddNetworkString("SMBleedHealed")
 util.AddNetworkString("SMBurnHealed")
 util.AddNetworkString("SMDiseaseHealed")
 util.AddNetworkString("SMRareDiseaseHealed")
+util.AddNetworkString("SMMedkitHealed")
 util.AddNetworkString("SMDmgSound")
 
 
@@ -49,9 +50,7 @@ function SMDiseaseInit(ply)
     end)
 
     timer.Create("SMRareDisease", rareDiseaseApply, 0, function() -- On average you will get a rare disease every 24 hours of playtime
-        print(hasRareDisease)
         if chance(1, rareDiseaseProbability) and hasRareDisease == false then
-            print("CHUNGUS")
             SMRareDisease(true, ply)
         end
     end)
@@ -65,6 +64,9 @@ hook.Add("PlayerDeath", "SMDie", function(ply)
     ----
     SMFracturePP(false)
     SMBleedPP(false)
+    SMBurnPP(false)
+    SMDiseasePP(false)
+    SMRareDiseasePP(false)
     ----
     hasFracture = false
     isBleeding = false

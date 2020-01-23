@@ -3,6 +3,7 @@ include("autorun/client/cl_postprocess.lua")
 
 function SMFracture(enabled, ply)
     if enabled == true and fractureEnabled == true then
+        --print(ply:Nick())
         hasFracture = true
         GAMEMODE:SetPlayerSpeed(ply, fractureWalkSpeed, fractureRunSpeed)
         ply:StopSprinting()
@@ -19,7 +20,7 @@ function SMBleeding(enabled, ply)
         isBleeding = true
         net.Start("SMBleedMSG")
         net.Send(ply)
-        GAMEMODE:SetPlayerSpeed(ply, bleedWalkSpeed, bleedRunSpeed)
+        GAMEMODE:SetPlayerSpeed(ply, bleedWalkSpeed, bleedRunSpeed) 
         timer.Create("SMBleedDmg", bleedDelay, bleedLoop, function()
             ply:TakeDamage(bleedDMG)
             net.Start("SMDmgSound")

@@ -10,14 +10,17 @@ end)
 
 net.Receive("SMBurnMSG", function()
     SMBurnPopup()
+    SMBurnPP(true)
 end)
 
 net.Receive("SMDiseaseMSG", function()
     SMDiseasePopup()
+    SMDiseasePP(true)
 end)
 
 net.Receive("SMRareDiseaseMSG", function()
     SMRareDiseasePopup()
+    SMRareDiseasePP(true)
 end)
 
 -----------------------------------------------------------------------------
@@ -35,20 +38,26 @@ net.Receive("SMBleedHealed", function()
 end)
 
 net.Receive("SMBurnHealed", function()
-    SMHealedPopup()
-    --SMBleedPP(false)
+    SMBurnHealedPopup()
+    SMBurnPP(false)
     surface.PlaySound("items/smallmedkit1.wav")
 end)
 
 net.Receive("SMDiseaseHealed", function()
-    SMHealedPopup()
-    --SMBleedPP(false)
+    SMDiseasseHealedPopup()
+    SMDiseasePP(false)
     surface.PlaySound("items/smallmedkit1.wav")
 end)
 
 net.Receive("SMRareDiseaseHealed", function()
-    SMHealedPopup()
-    --SMBleedPP(false)
+    SMRareDiseasseHealedPopup()
+    SMRareDiseasePP(false)
+    surface.PlaySound("items/smallmedkit1.wav")
+end)
+
+net.Receive("SMMedkitHealed", function()
+    SMMedkitPopup()
+    SMFracturePP(false) -- Fix this later
     surface.PlaySound("items/smallmedkit1.wav")
 end)
 

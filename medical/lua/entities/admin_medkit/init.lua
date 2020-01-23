@@ -27,7 +27,7 @@ function ENT:Use(activator, caller)
 	SMBurn(false, activator)
 	SMDisease(false, activator)
 	SMRareDisease(false, activator)
-	net.Start("SMHealed")
+	net.Start("SMMedkitHealed")
 	net.Send(activator)
 	if activator:Health() >= activator:GetMaxHealth() then
 		activator:SetHealth(activator:GetMaxHealth())

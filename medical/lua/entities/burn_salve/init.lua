@@ -4,7 +4,7 @@ AddCSLuaFile("shared.lua")
 include('shared.lua')
 
 function ENT:Initialize()
-	self:SetModel("models/hunter/blocks/cube05x05x05.mdl")
+	self:SetModel("models/props_lab/jar01a.mdl")
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)
@@ -18,7 +18,7 @@ end
 function ENT:Use(activator, caller)
 	SMBurn(false, activator)
 	hasBurn = false
-	net.Start("SMHealed")
+	net.Start("SMBurnHealed")
 	net.Send(activator)
 	self:Remove()
 end

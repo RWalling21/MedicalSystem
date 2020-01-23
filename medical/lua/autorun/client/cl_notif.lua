@@ -32,3 +32,19 @@ end
 function SMBleedHealedPopup()
     notification.AddLegacy(bleedHealedNotifText, NOTIFY_GENERIC, bleedHealedNotifTime)
 end
+
+function SMBurnHealedPopup()
+    notification.AddLegacy(burnHealedNotifText, NOTIFY_GENERIC, burnHealedNotifTime)
+end
+
+function SMDiseasseHealedPopup()
+    notification.AddLegacy(diseaseHealedNotifText, NOTIFY_GENERIC, diseaseHealedNotifTime)
+end
+
+function SMRareDiseasseHealedPopup()
+    notification.AddLegacy(rareDiseaseHealedNotifText, NOTIFY_GENERIC, rareDiseaseHealedNotifTime)
+end
+
+function SMMedkitPopup()
+    notification.AddLegacy(medkitHealedNotifText, NOTIFY_GENERIC, medkitHealedNotifTime)
+end
