@@ -20,26 +20,36 @@ function ENT:Use(activator, caller)
 	if adminMedkitFracture and hasFracture then
 		hasFracture = false
 		SMFracture(false, activator)
+		net.Start("SMFractureHealed")
+		net.Send(activator)
 	end
 
 	if adminMedkitBleed and isBleeding then
 		isBleeding = false
 		SMBleeding(false, activator)
+		net.Start("SMBleedHealed")
+		net.Send(activator)
 	end
 	
 	if adminMedkitBurn and hasBurn then
 		hasBurn = false
 		SMBurn(false, activator)
+		net.Start("SMBurnHealed")
+		net.Send(activator)
 	end
 
 	if adminMedkitDisease and hasDisease then
 		hasDisease = false
 		SMDisease(false, activator)
+		net.Start("SMDiseaseHealed")
+		net.Send(activator)
 	end
 
 	if adminMedkitRareDisease and hasRareDisease then
 		hasRareDisease = false
 		SMRareDisease(false, activator)
+		net.Start("SMRareDiseaseHealed")
+		net.Send(activator)
 	end
 	-------------------------------------------------------
 	if activator:Health() >= activator:GetMaxHealth() then

@@ -1,3 +1,5 @@
+include("autorun/config/sm_config.lua")
+
 function SMFracturePopup()
     notification.AddLegacy(fractureNotifText, NOTIFY_GENERIC, fractureNotifTime)
     surface.PlaySound("buttons/button10.wav")

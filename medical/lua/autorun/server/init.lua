@@ -1,5 +1,4 @@
 -- SETUP
-AddCSLuaFile("autorun/client/cl_init.lua")
 AddCSLuaFile("autorun/client/cl_postprocess.lua")
 AddCSLuaFile("autorun/shared/sh_init.lua")
 AddCSLuaFile("autorun/config/sm_config.lua")
@@ -13,7 +12,7 @@ util.AddNetworkString("SMBleedMSG")
 util.AddNetworkString("SMBurnMSG")
 util.AddNetworkString("SMDiseaseMSG")
 util.AddNetworkString("SMRareDiseaseMSG")
-util.AddNetworkString("SMDiseaseCall")
+--util.AddNetworkString("SMDiseaseCall")
 util.AddNetworkString("SMFractureHealed")
 util.AddNetworkString("SMBleedHealed")
 util.AddNetworkString("SMBurnHealed")
@@ -26,6 +25,10 @@ util.AddNetworkString("SMCant")
 
 
 -- HOOKS
+hook.Add("PlayerAuthed", "SMAuth", function(ply)
+    SMDiseaseInit(ply)
+end)
+
 hook.Add("GetFallDamage", "SMFallDamage", function(ply, speed)
     if speed > fractureFallSpeed and hasFracture == false then
         SMFracture(true, ply)
@@ -48,6 +51,6 @@ hook.Add("PlayerDeath", "SMDie", function(ply)
     SMDeactivate(ply)
 end)
 
-hook.Add("PlayerDisconnected", "SMDC", function(ply)
-    SMDeactivate(ply)
-end)
+--hook.Add("PlayerDisconnected", "SMDC", function(ply)
+    --SMDeactivate(ply)
+--end)
