@@ -17,21 +17,29 @@ function ENT:Initialize()
 end
 
 function ENT:Use(activator, caller)
-	if hasFracture then
+	if medkitFracture and hasFracture then
 		hasFracture = false
 		SMFracture(false, activator)
 	end
-	if isBleeding then
+
+	if medkitBleed and isBleeding then
 		isBleeding = false
 		SMBleeding(false, activator)
 	end
-	if hasBurn then
+	
+	if medkitBurn and hasBurn then
 		hasBurn = false
 		SMBurn(false, activator)
 	end
-	if hasDisease then
+
+	if medkitDisease and hasDisease then
 		hasDisease = false
 		SMDisease(false, activator)
+	end
+
+	if medkitRareDisease and hasRareDisease then
+		hasRareDisease = false
+		SMRareDisease(false, activator)
 	end
 	-------------------------------------------------------
 	if activator:Health() >= activator:GetMaxHealth() then

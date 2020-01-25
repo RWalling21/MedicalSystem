@@ -9,18 +9,6 @@ local blood = {
 	["$pp_colour_mulg"] = 0,
 	["$pp_colour_mulb"] = 0
 }
-local burn = {
-	["$pp_colour_addr"] = 0.15,
-	["$pp_colour_addg"] = 0.05,
-	["$pp_colour_addb"] = 0,
-	["$pp_colour_brightness"] = 0,
-	["$pp_colour_contrast"] = 1,
-	["$pp_colour_colour"] = 1,
-	["$pp_colour_mulr"] = 0.08,
-	["$pp_colour_mulg"] = 0.05,
-	["$pp_colour_mulb"] = 0
-}
-
 
 function SMFracturePP(enabled)
 	hook.Add("RenderScreenspaceEffects", "SMFPP", function()
@@ -45,7 +33,7 @@ end
 function SMBurnPP(enabled)
 	hook.Add("RenderScreenspaceEffects", "SMBUPP", function()
 		if enabled == true then
-			DrawColorModify(burn)
+			DrawMotionBlur(0.15, 0.3, 0.01)
 			DrawToyTown(5, ScrH()/ 2)
 		else
 		end

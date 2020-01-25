@@ -82,10 +82,21 @@ cantUseNotifText = "I'm sorry, you cannot use this item"
 cantUseNotifTime = 4
 
 -----------------------------------------------------------------------------
---Entities
-medkitHP = 25 --HP given to player on medkit use
-admnMedkitHP = 100 --HP given to player on admin medkit use
+--Medkit
 
+medkitHP = 25 --HP given to player on medkit use
+medkitFracture = true -- Enables medkit to heal a fracture
+medkitBleed = true -- Enables medkit to heal a fracture
+medkitBurn = true -- Enables medkit to heal a fracture
+medkitDisease = false -- Enables medkit to heal a fracture
+medkitRareDisease = false -- Enables medkit to heal a fracture
+
+adminMedkitHP = 100 --HP given to player on admin medkit use
+adminMedkitFracture = true -- Enables medkit to heal a fracture
+adminMedkitBleed = true -- Enables medkit to heal a fracture
+adminMedkitBurn = true -- Enables medkit to heal a fracture
+adminMedkitDisease = true -- Enables medkit to heal a fracture
+adminMedkitRareDisease = true -- Enables medkit to heal a fracture
 -----------------------------------------------------------------------------
 --Support
 --DO NOT edit these values if you do not have an error
