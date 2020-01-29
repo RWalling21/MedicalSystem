@@ -1,0 +1,27 @@
+What is this file for?
+------------------------------------------------------------------------------------------------------------------------------------
+Using sm_config.lua you may set custom sounds for conditions and healing
+
+
+How do I set sounds?
+------------------------------------------------------------------------------------------------------------------------------------
+You may set sounds by using ANY of the sounds (found here https://maurits.tv/data/garrysmod/wiki/wiki.garrysmod.com/index8f77.html)
+When you set the sound you must do it in a very specific way
+
+Correct, fractureNotifSound = "buttons/button10.wav" (Using default var name, using quotes, no caps)
+Incorrect, fractureNotifSound = buttons/button10.wav (No quotes)
+Incorrect, fractureNotifSound = "Buttons/Button10.wav" (Caps)
+Incorrect, fractureSound = "buttons/button10.wav" (Changing variable name)
+
+
+How do I listen to the sounds before I set them?
+------------------------------------------------------------------------------------------------------------------------------------
+Using GCFScape (found here http://nemesis.thewavelength.net/index.php?p=25) you may listen to sounds
+Use this guide to locate your HL2 sound file and listen to the sounds (https://steamcommunity.com/app/220/discussions/0/613937943028357700/)
+
+
+What to avoid
+------------------------------------------------------------------------------------------------------------------------------------
+Avoid sounds labeled loop, it will play until the condition is healed 
+Avoid using sounds that are too long
+Avoid using sounds that are too loud and annoying

@@ -3,6 +3,7 @@ AddCSLuaFile("shared.lua")
 
 include('shared.lua')
 include("autorun/config/sm_config.lua")
+include("autorun/shared/sh_init.lua")
 
 function ENT:Initialize()
 	self:SetModel("models/weapons/w_medkit.mdl")
@@ -20,36 +21,31 @@ function ENT:Use(activator, caller)
 	if adminMedkitFracture and hasFracture then
 		hasFracture = false
 		SMFracture(false, activator)
-		net.Start("SMFractureHealed")
-		net.Send(activator)
+		SMFracturePP(false)
 	end
 
 	if adminMedkitBleed and isBleeding then
 		isBleeding = false
 		SMBleeding(false, activator)
-		net.Start("SMBleedHealed")
-		net.Send(activator)
+		SMBleedPP(false)
 	end
 	
 	if adminMedkitBurn and hasBurn then
 		hasBurn = false
 		SMBurn(false, activator)
-		net.Start("SMBurnHealed")
-		net.Send(activator)
+		SMBurnPP(false)
 	end
 
 	if adminMedkitDisease and hasDisease then
 		hasDisease = false
 		SMDisease(false, activator)
-		net.Start("SMDiseaseHealed")
-		net.Send(activator)
+		SMDiseasePP(false)
 	end
 
 	if adminMedkitRareDisease and hasRareDisease then
 		hasRareDisease = false
 		SMRareDisease(false, activator)
-		net.Start("SMRareDiseaseHealed")
-		net.Send(activator)
+		SMRareDiseasePP(false)
 	end
 	-------------------------------------------------------
 	if activator:Health() >= activator:GetMaxHealth() then

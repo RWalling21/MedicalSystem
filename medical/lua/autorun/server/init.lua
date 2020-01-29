@@ -1,4 +1,13 @@
+---------------------------
+---------------------------
+-- Simple Mediucal
+-- v1.0.00 [1/26/2020]
+---------------------------
+-- Made by Beb (AKA Terry)
+---------------------------
+---------------------------
 -- SETUP
+
 AddCSLuaFile("autorun/client/cl_postprocess.lua")
 AddCSLuaFile("autorun/shared/sh_init.lua")
 AddCSLuaFile("autorun/config/sm_config.lua")
@@ -6,25 +15,27 @@ AddCSLuaFile("autorun/config/sm_config.lua")
 include("autorun/shared/sh_init.lua")
 include("autorun/config/sm_config.lua")
 
--- Do we really need all these Network strings?
 util.AddNetworkString("SMFractureMSG")
 util.AddNetworkString("SMBleedMSG")
 util.AddNetworkString("SMBurnMSG")
 util.AddNetworkString("SMDiseaseMSG")
 util.AddNetworkString("SMRareDiseaseMSG")
---util.AddNetworkString("SMDiseaseCall")
+
 util.AddNetworkString("SMFractureHealed")
 util.AddNetworkString("SMBleedHealed")
 util.AddNetworkString("SMBurnHealed")
 util.AddNetworkString("SMDiseaseHealed")
 util.AddNetworkString("SMRareDiseaseHealed")
 util.AddNetworkString("SMMedkitHealed")
+
 util.AddNetworkString("SMDmgSound")
 util.AddNetworkString("SMPlyDie")
 util.AddNetworkString("SMCant")
+util.AddNetworkString("SMCamColor")
 
 
 -- HOOKS
+
 hook.Add("PlayerAuthed", "SMAuth", function(ply)
     SMDiseaseInit(ply)
 end)
@@ -51,6 +62,18 @@ hook.Add("PlayerDeath", "SMDie", function(ply)
     SMDeactivate(ply)
 end)
 
---hook.Add("PlayerDisconnected", "SMDC", function(ply)
-    --SMDeactivate(ply)
---end)
+net.Receive("SMCamColor", function()
+    SMR = net.ReadString()
+    SMG = net.ReadString()
+    SMB = net.ReadString()
+    local SMFile = "simple_medical/smcolor.txt"
+    if (!file.IsDir(SMFile, "DATA") && !file.Exists(SMFile, "DATA")) then   
+        file.CreateDir("simple_medical")	
+        file.Write(SMFile, SMR.." "..SMG.." "..SMB.." ".."255")	
+        print("Wrote File")
+    else
+        file.Delete(SMFile)
+        file.Write(SMFile, SMR.." "..SMG.." "..SMB.." ".."255")	
+        print("Replaced file")
+    end
+end)

@@ -2,7 +2,7 @@ include("autorun/config/sm_config.lua")
 include("autorun/client/cl_postprocess.lua")
 
 ------------------------------------------------------------------------------------------------
-
+-- Conditions
 function SMFracture(enabled, target)
     if enabled and fractureEnabled then
         ply = target
@@ -88,6 +88,7 @@ function SMRareDisease(enabled, target)
 end
 
 ------------------------------------------------------------------------------------------------
+--Condition functions
 
 function SMDiseaseInit(ply)
     timer.Create("SMDisease", diseaseApply, 0, function() -- On average you will get a disease every 1 hour of play time

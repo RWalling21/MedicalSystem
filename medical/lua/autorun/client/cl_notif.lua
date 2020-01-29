@@ -2,27 +2,27 @@ include("autorun/config/sm_config.lua")
 
 function SMFracturePopup()
     notification.AddLegacy(fractureNotifText, NOTIFY_GENERIC, fractureNotifTime)
-    surface.PlaySound("buttons/button10.wav")
+    surface.PlaySound(fractureNotifSound)
 end
 
 function SMBleedPopup()
     notification.AddLegacy(bleedNotifText, NOTIFY_GENERIC, bleedNotifTime)
-    surface.PlaySound("buttons/button10.wav")
+    surface.PlaySound(bleedNotifSound)
 end
 
 function SMBurnPopup()
     notification.AddLegacy(burnNotifText, NOTIFY_GENERIC, burnNotifTime)
-    surface.PlaySound("buttons/button10.wav")
+    surface.PlaySound(burnNotifSound)
 end
 
 function SMDiseasePopup()
     notification.AddLegacy(diseaseNotifText, NOTIFY_GENERIC, diseaseNotifTime)
-    surface.PlaySound("ambient/alarms/klaxon1.wav")
+    surface.PlaySound(diseaseNotifSound)
 end
 
 function SMRareDiseasePopup()
     notification.AddLegacy(rareDiseaseNotifText, NOTIFY_GENERIC, rareDiseaseNotifTime)
-    surface.PlaySound("ambient/alarms/klaxon1.wav")
+    surface.PlaySound(rareDiseaseNotifSound)
 end
 
 -------------------------------------------------------------------------------------------

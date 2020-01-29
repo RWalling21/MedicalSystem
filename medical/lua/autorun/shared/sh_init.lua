@@ -12,3 +12,4 @@ function chance(min, max)
         return false
     end
 end
+

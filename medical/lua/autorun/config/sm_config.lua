@@ -51,35 +51,59 @@ fractureHealedNotifText = "Your fracture has been healed!"
 fractureHealedNotifTime = 4
 
 --Bleed
-bleedNotifText = "You are bleeding!" -- Notification text displayed
-bleedNotifTime = 4 -- How long the notification will be shown
+bleedNotifText = "You are bleeding!" 
+bleedNotifTime = 4 
 bleedHealedNotifText = "Your bleeding has stopped!"
 bleedHealedNotifTime = 4
 
 
 --Burn
-burnNotifText = "You have a nasty burn!" -- Notification text displayed
-burnNotifTime = 4 -- How long the notification will be shown
+burnNotifText = "You have a nasty burn!" 
+burnNotifTime = 4 
 burnHealedNotifText = "Your burn has been healed!"
 burnHealedNotifTime = 4
 
 --Disease
-diseaseNotifText = "You have come down with a disease!" -- Notification text displayed
-diseaseNotifTime = 4 -- How long the notification will be shown
+diseaseNotifText = "You have come down with a disease!" 
+diseaseNotifTime = 4
 diseaseHealedNotifText = "Your disease has been cured!"
 diseaseHealedNotifTime = 4
 
 --Rare Disease
-rareDiseaseNotifText = "You have come down with a RARE disease! Get help ASAP!" -- Notification text displayed
-rareDiseaseNotifTime = 6 -- How long the notification will be shown
+rareDiseaseNotifText = "You have come down with a RARE disease! Get help ASAP!"
+rareDiseaseNotifTime = 6 
 rareDiseaseHealedNotifText = "Your rare disease has been cured!"
 rareDiseaseHealedNotifTime = 4
 
-medkitHealedNotifText = "The medkit cured your ailments!"
+--Medkit
+medkitHealedNotifText = "The medkit has healed you!"
 medkitHealedNotifTime = 4
 
+--Can't
 cantUseNotifText = "I'm sorry, you cannot use this item"
 cantUseNotifTime = 4
+
+-----------------------------------------------------------------------------
+--Sounds
+
+fractureNotifSound = "buttons/button10.wav" -- Sound played on fracture, check sounds.txt for info on how to set them
+fractureHealedSound = "items/smallmedkit1.wav"
+
+bleedNotifSound = "buttons/button10.wav" -- Sound played on bleed, check sounds.txt for info on how to set them
+bleedHealedSound = "items/smallmedkit1.wav"
+
+burnNotifSound = "buttons/button10.wav" -- Sound played on burn, check sounds.txt for info on how to set them
+burnHealedSound = "items/smallmedkit1.wav"
+
+diseaseNotifSound = "ambient/alarms/klaxon1.wav" -- Sound played on disease, check sounds.txt for info on how to set them
+diseaseHealedSound = "items/smallmedkit1.wav"
+
+rareDiseaseNotifSound = "ambient/alarms/klaxon1.wav" -- Sound played on rare disease, check sounds.txt for info on how to set them
+rareDiseaseHealedSound = "items/smallmedkit1.wav"
+
+medkitHealedSound = "items/smallmedkit1.wav" -- Sound played on medkit use, check sounds.txt for info on how to set them
+
+cantSound = "buttons/button18.wav" -- Sound played when you can't use an item, check sounds.txt for info on how to set them
 
 -----------------------------------------------------------------------------
 --Medkit
@@ -97,8 +121,16 @@ adminMedkitBleed = true -- Enables medkit to heal a fracture
 adminMedkitBurn = true -- Enables medkit to heal a fracture
 adminMedkitDisease = true -- Enables medkit to heal a fracture
 adminMedkitRareDisease = true -- Enables medkit to heal a fracture
------------------------------------------------------------------------------
---Support
---DO NOT edit these values if you do not have an error
 
-startDiseaseDelay = 5
+-----------------------------------------------------------------------------
+-- Don't Change!!!!!!!!!
+
+--net.Receive("SMCamColor", function()
+  --  SMCamColor = net.ReadColor()
+    --local SMFile = "SM/SMColor.txt"
+    --if (!file.IsDir(SMFile, "DATA") && !file.Exists(SMFile, "DATA")) then     	
+      --  print("Wrote File")
+    --else
+      --  print("Chungua")
+    --end
+--end)

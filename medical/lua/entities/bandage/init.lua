@@ -17,7 +17,7 @@ end
 
 function ENT:Use(activator, caller)
 	if isBleeding then
-		isBleeding = false -- Check this variable and see where it is applied (Probobly nothing)
+		isBleeding = false
 		SMBleeding(false, activator)
 		net.Start("SMBleedHealed")
 		net.Send(activator)

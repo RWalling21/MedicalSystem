@@ -20,36 +20,31 @@ function ENT:Use(activator, caller)
 	if medkitFracture and hasFracture then
 		hasFracture = false
 		SMFracture(false, activator)
-		net.Start("SMFractureHealed")
-		net.Send(activator)
+		SMFracturePP(false)
 	end
 
 	if medkitBleed and isBleeding then
 		isBleeding = false
 		SMBleeding(false, activator)
-		net.Start("SMBleedHealed")
-		net.Send(activator)
+		SMBleedPP(false)
 	end
 	
 	if medkitBurn and hasBurn then
 		hasBurn = false
 		SMBurn(false, activator)
-		net.Start("SMBurnHealed")
-		net.Send(activator)
+		SMBurnPP(false)
 	end
 
 	if medkitDisease and hasDisease then
 		hasDisease = false
 		SMDisease(false, activator)
-		net.Start("SMDiseaseHealed")
-		net.Send(activator)
+		SMDiseasePP(false)
 	end
 
 	if medkitRareDisease and hasRareDisease then
 		hasRareDisease = false
 		SMRareDisease(false, activator)
-		net.Start("SMRareDiseaseHealed")
-		net.Send(activator)
+		SMRareDiseasePP(false)
 	end
 	-------------------------------------------------------
 	if activator:Health() >= activator:GetMaxHealth() then
@@ -60,9 +55,9 @@ function ENT:Use(activator, caller)
 		if hp >= activator:GetMaxHealth() then
 			activator:SetHealth(activator:GetMaxHealth())
 		else
-			activator:SetHealth(activator:Health() + medkitHP) -- Can do over max
+			activator:SetHealth(activator:Health() + medkitHP)
 		end
-		net.Start("SMMedkitHealed") -- Make different notif for no condition healed
+		net.Start("SMMedkitHealed")
 		net.Send(activator)
 		self:Remove()
 	end
