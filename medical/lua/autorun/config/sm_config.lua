@@ -56,7 +56,6 @@ bleedNotifTime = 4
 bleedHealedNotifText = "Your bleeding has stopped!"
 bleedHealedNotifTime = 4
 
-
 --Burn
 burnNotifText = "You have a nasty burn!" 
 burnNotifTime = 4 
@@ -123,14 +122,25 @@ adminMedkitDisease = true -- Enables medkit to heal a fracture
 adminMedkitRareDisease = true -- Enables medkit to heal a fracture
 
 -----------------------------------------------------------------------------
--- Don't Change!!!!!!!!!
+-- Hovering text
 
---net.Receive("SMCamColor", function()
-  --  SMCamColor = net.ReadColor()
-    --local SMFile = "SM/SMColor.txt"
-    --if (!file.IsDir(SMFile, "DATA") && !file.Exists(SMFile, "DATA")) then     	
-      --  print("Wrote File")
-    --else
-      --  print("Chungua")
-    --end
---end)
+splintColor = Color(55, 244, 152)
+splintColorOutline = Color(75,75,75)
+
+bandageColor = Color(55, 244, 152)
+bandageColorOutline = Color(75,75,75)
+
+burnSalveColor = Color(55, 244, 152)
+burnSalveColorOutline = Color(75,75,75)
+
+diseaseCureColor = Color(55, 244, 152)
+diseaseColorOutline = Color(75,75,75)
+
+rareDiseaseCure = Color(55, 244, 152)
+rareDiseaseColorOutline = Color(75,75,75)
+
+medkitCure = Color(55, 244, 152)
+medkitColorOutline = Color(75,75,75)
+
+adminMedkitCure = Color(55, 244, 152)
+adminMedkitColorOutline = Color(75,75,75)

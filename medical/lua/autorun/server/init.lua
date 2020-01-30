@@ -33,7 +33,6 @@ util.AddNetworkString("SMPlyDie")
 util.AddNetworkString("SMCant")
 util.AddNetworkString("SMCamColor")
 
-
 -- HOOKS
 
 hook.Add("PlayerAuthed", "SMAuth", function(ply)
@@ -60,20 +59,4 @@ end)
 
 hook.Add("PlayerDeath", "SMDie", function(ply)
     SMDeactivate(ply)
-end)
-
-net.Receive("SMCamColor", function()
-    SMR = net.ReadString()
-    SMG = net.ReadString()
-    SMB = net.ReadString()
-    local SMFile = "simple_medical/smcolor.txt"
-    if (!file.IsDir(SMFile, "DATA") && !file.Exists(SMFile, "DATA")) then   
-        file.CreateDir("simple_medical")	
-        file.Write(SMFile, SMR.." "..SMG.." "..SMB.." ".."255")	
-        print("Wrote File")
-    else
-        file.Delete(SMFile)
-        file.Write(SMFile, SMR.." "..SMG.." "..SMB.." ".."255")	
-        print("Replaced file")
-    end
 end)
