@@ -1,4 +1,4 @@
--- Condition Call 
+-- Condition Call
 net.Receive("SMFractureMSG", function()
     SMFracturePopup()
     SMFracturePP(true)
@@ -56,9 +56,14 @@ net.Receive("SMRareDiseaseHealed", function()
     surface.PlaySound(rareDiseaseHealedSound)
 end)
 
+-- Expencive
 net.Receive("SMMedkitHealed", function()
     SMMedkitPopup()
     SMFracturePP(false)
+    SMBleedPP(false)
+    SMBurnPP(false)
+    SMDiseasePP(false)
+    SMRareDiseasePP(false)
     surface.PlaySound(medkitHealedSound)
 end)
 
@@ -71,6 +76,7 @@ end)
 -- Misc
 net.Receive("SMDmgSound", function()
     local rand = math.random(1, 3)
+
     if rand == 1 then
         surface.PlaySound("vo/npc/male01/pain06.wav")
     elseif rand == 2 then

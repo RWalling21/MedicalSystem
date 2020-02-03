@@ -1,10 +1,10 @@
 ENT.Type = "anim"
 ENT.Base = "base_gmodentity"
-ENT.PrintName = "Disease Cure"
+ENT.PrintName = "Painkillers"
 ENT.Category = "Simple Medical"
 ENT.Author = "Beb"
 ENT.Contact = "Via steam"
-ENT.Purpose = "Heals a disease"
-ENT.Instructions = "Use to heal a disease"
+ENT.Purpose = "Heals fracture"
+ENT.Instructions = "Use to heal a fracture"
 ENT.Spawnable = true
 ENT.AdminSpawnable = false

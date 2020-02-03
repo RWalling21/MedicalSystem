@@ -8,6 +8,6 @@ function ENT:Draw()
     ang.x = 0
     ang.z = 90
     cam.Start3D2D(pos, ang, 0.1)
-    draw.SimpleTextOutlined("Admin Medkit", "SMCamText", 0, 0, adminMedkitCure, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, adminMedkitColorOutline)
+    draw.SimpleTextOutlined("Painkillers", "SMCamText", 0, 0, painkillerColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, painkillerColorOutline)
     cam.End3D2D()
 end

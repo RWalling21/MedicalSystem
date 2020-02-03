@@ -1,4 +1,4 @@
-include("autorun/config/sm_config.lua")
+include("config/sm_config.lua")
 
 function SMFracturePopup()
     notification.AddLegacy(fractureNotifText, NOTIFY_GENERIC, fractureNotifTime)
@@ -26,7 +26,6 @@ function SMRareDiseasePopup()
 end
 
 -------------------------------------------------------------------------------------------
-
 function SMFractureHealedPopup()
     notification.AddLegacy(fractureHealedNotifText, NOTIFY_GENERIC, fractureHealedNotifTime)
 end

@@ -3,7 +3,7 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 function ENT:Initialize()
-    self:SetModel("models/weapons/w_medkit.mdl")
+    self:SetModel("models/props_lab/jar01a.mdl")
     self:PhysicsInit(SOLID_VPHYSICS)
     self:SetMoveType(MOVETYPE_VPHYSICS)
     self:SetSolid(SOLID_VPHYSICS)
@@ -16,9 +16,9 @@ function ENT:Initialize()
 end
 
 function ENT:Use(activator, caller)
-    if Condition[2] then
-        SMBleeding(false, activator)
-        net.Start("SMBleedHealed")
+    if Condition[1] then
+        SMFracture(false, activator)
+        net.Start("SMFractureHealed")
         net.Send(activator)
         self:Remove()
     else
