@@ -15,9 +15,8 @@ function ENT:Initialize()
     end
 end
 
-function ENT:Use(activator, caller)
-    if Condition[3] then
-        Condition[3] = false
+function ENT:Use(ply, caller)
+    if ply.hasBurn then
         SMBurn(false, activator)
         net.Start("SMBurnHealed")
         net.Send(activator)

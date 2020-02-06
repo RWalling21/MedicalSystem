@@ -16,37 +16,37 @@ function ENT:Initialize()
     end
 end
 
-function ENT:Use(activator, caller)
-    if Condition[1] then
-        SMFracture(false, activator)
+function ENT:Use(ply, caller)
+    if ply.hasFracture then
+        SMFracture(false, ply)
     end
 
-    if Condition[2] then
-        SMBleeding(false, activator)
+    if ply.hasBleed then
+        SMBleeding(false, ply)
     end
 
-    if Condition[3] then
-        SMBurn(false, activator)
+    if ply.hasBurn then
+        SMBurn(false, ply)
     end
 
-    if Condition[4] then
-        SMDisease(false, activator)
+    if ply.hasDisease then
+        SMDisease(false, ply)
     end
 
-    if Condition[5] then
-        SMRareDisease(false, activator)
+    if ply.hasRareDisease then
+        SMRareDisease(false, ply)
     end
 
     -------------------------------------------------------
-    local hp = activator:Health() + adminMedkitHP
+    local hp = ply:Health() + adminMedkitHP
 
-    if hp >= activator:GetMaxHealth() then
-        activator:SetHealth(activator:GetMaxHealth())
+    if hp >= ply:GetMaxHealth() then
+        ply:SetHealth(ply:GetMaxHealth())
     else
-        activator:SetHealth(activator:Health() + adminMedkitHP)
+        ply:SetHealth(ply:Health() + adminMedkitHP)
     end
 
     net.Start("SMMedkitHealed")
-    net.Send(activator)
+    net.Send(ply)
     self:Remove()
 end

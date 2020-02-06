@@ -15,14 +15,14 @@ function ENT:Initialize()
     end
 end
 
-function ENT:Use(activator, caller)
-    if Condition[2] then
-        SMBleeding(false, activator)
+function ENT:Use(ply, caller)
+    if ply.hasBleed then
+        SMBleeding(false, ply)
         net.Start("SMBleedHealed")
-        net.Send(activator)
+        net.Send(ply)
         self:Remove()
     else
         net.Start("SMCant")
-        net.Send(activator)
+        net.Send(ply)
     end
 end

@@ -33,24 +33,32 @@ hook.Add("PlayerAuthed", "SMAuth", function(ply)
 end)
 
 hook.Add("GetFallDamage", "SMFallDamage", function(ply, speed)
-    if speed > fractureFallSpeed and Condition[1] == false then
+    if speed > fractureFallSpeed and ply.hasFracture == false then
         SMFracture(true, ply)
     end
 end)
 
 -- Any Damage
 hook.Add("EntityTakeDamage", "SMGeneralDamage", function(target, dmg)
-    if target:IsPlayer() and dmg:IsBulletDamage() and Condition[2] == false then
+    if target:IsPlayer() and dmg:IsBulletDamage() and target.hasBleed == false then
         if chance(1, bleedProbability) then
             SMBleeding(true, target)
         end
-    elseif target:IsPlayer() and dmg:IsDamageType(8) and Condition[3] == false then
+    elseif target:IsPlayer() and dmg:IsDamageType(8) and target.hasBurn == false then
         if chance(1, burnProbability) then
             SMBurn(true, target)
         end
     end
 end)
 
-hook.Add("PlayerDeath", "SMDie", function(ply)
-    SMDeactivate(ply)
-end)
+if removeConditionOnDeath then
+    hook.Add("PlayerDeath", "SMDie", function(ply)
+        SMDeactivate(ply)
+    end)
+end
+
+if removeConditionOnJob then
+    hook.Add("OnPlayerChangedTeam", "SMChangeTeam", function(ply)
+        SMDeactivate(ply)
+    end)
+end

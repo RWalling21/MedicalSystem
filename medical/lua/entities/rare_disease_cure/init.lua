@@ -15,14 +15,14 @@ function ENT:Initialize()
     end
 end
 
-function ENT:Use(activator, caller)
-    if Condition[5] then
-        SMRareDisease(false, activator)
+function ENT:Use(ply, caller)
+    if ply.hasRareDisease then
+        SMRareDisease(false, ply)
         net.Start("SMRareDiseaseHealed")
-        net.Send(activator)
+        net.Send(ply)
         self:Remove()
     else
         net.Start("SMCant")
-        net.Send(activator)
+        net.Send(ply)
     end
 end

@@ -1,25 +1,24 @@
 --SETUP
 include("autorun/client/cl_postprocess.lua")
-Condition = {false, false, false, false, false} --Fracture, Bleed, Burn, Disease, RDisease
 
 --Conditions
 function SMFracture(enabled, ply)
     if enabled and fractureEnabled then
-        Condition[1] = true
+        ply.hasFracture = true
         GAMEMODE:SetPlayerSpeed(ply, fractureWalkSpeed, fractureRunSpeed)
         ply:StopSprinting()
         ply:StopWalking()
         net.Start("SMFractureMSG")
         net.Send(ply)
     elseif enabled == false then
-        Condition[1] = false
+        ply.hasFracture = false
         GAMEMODE:SetPlayerSpeed(ply, 160, 240) -- Set back to default, make a variable on startup with getRunSpeed()
     end
 end
 
 function SMBleeding(enabled, ply)
     if enabled and bleedEnabled then
-        Condition[2] = true
+        ply.hasBleed = true
         net.Start("SMBleedMSG")
         net.Send(ply)
         GAMEMODE:SetPlayerSpeed(ply, bleedWalkSpeed, bleedRunSpeed)
@@ -30,7 +29,7 @@ function SMBleeding(enabled, ply)
             net.Send(ply)
         end)
     elseif enabled == false then
-        Condition[2] = false
+        ply.hasBleed = false
         timer.Stop("SMBleedDmg")
         GAMEMODE:SetPlayerSpeed(ply, 160, 240)
     end
@@ -38,7 +37,7 @@ end
 
 function SMBurn(enabled, ply)
     if enabled and burnEnabled then
-        Condition[3] = true
+        ply.hasBurn = true
         net.Start("SMBurnMSG")
         net.Send(ply)
         GAMEMODE:SetPlayerSpeed(ply, burnWalkSpeed, burnRunSpeed)
@@ -49,7 +48,7 @@ function SMBurn(enabled, ply)
             net.Send(ply)
         end)
     elseif enabled == false then
-        Condition[3] = false
+        ply.hasBurn = false
         timer.Stop("SMBurnDmg")
         GAMEMODE:SetPlayerSpeed(ply, 160, 240)
     end
@@ -57,7 +56,7 @@ end
 
 function SMDisease(enabled, ply)
     if enabled and diseaseEnabled then
-        Condition[4] = true
+        ply.hasDisease = true
         net.Start("SMDiseaseMSG")
         net.Send(ply)
 
@@ -67,14 +66,14 @@ function SMDisease(enabled, ply)
             net.Send(ply)
         end)
     elseif enabled == false then
-        Condition[4] = false
+        ply.hasDisease = false
         timer.Stop("SMDiseaseDMG")
     end
 end
 
 function SMRareDisease(enabled, ply)
     if enabled and diseaseEnabled then
-        Condition[5] = true
+        ply.hasRareDisease = true
         net.Start("SMRareDiseaseMSG")
         net.Send(ply)
 
@@ -84,7 +83,7 @@ function SMRareDisease(enabled, ply)
             net.Send(ply)
         end)
     elseif enabled == false then
-        Condition[5] = false
+        ply.hasRareDisease = false
         timer.Stop("SMRareDiseaseDMG")
     end
 end
@@ -92,13 +91,13 @@ end
 --Misc Functions
 function SMDiseaseInit(ply)
     timer.Create("SMDisease", diseaseApply, 0, function()
-        if chance(1, diseaseProbability) and Condition[4] == false then
+        if chance(1, diseaseProbability) and ply.hasDisease == false then
             SMDisease(true, ply)
         end
     end)
 
     timer.Create("SMRareDisease", rareDiseaseApply, 0, function()
-        if chance(1, rareDiseaseProbability) and Condition[5] == false then
+        if chance(1, rareDiseaseProbability) and ply.hasRareDisease == false then
             SMRareDisease(true, ply)
         end
     end)
@@ -117,7 +116,6 @@ end
 
 function chance(min, max)
     local rand = math.random(min, max)
-
     -- We use min because it is a constant that will always give us the correct value
     if rand == min then
         return true

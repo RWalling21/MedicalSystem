@@ -2,7 +2,7 @@
 --Conditions
 --Fracture
 fractureEnabled = true -- Enables / Disables condition
-fractureFallSpeed = 660 -- Speed the player must be falling to cause a fracture
+fractureFallSpeed = 375 -- Speed the player must be falling to cause a fracture
 fractureWalkSpeed = 75 -- Walkspeed after condition default is 160
 fractureRunSpeed = 75 -- Runspeed after condition default is 240
 --Bleed
@@ -68,6 +68,8 @@ medkitHealedNotifTime = 4
 --Can't
 cantUseNotifText = "I'm sorry, you cannot use this item"
 cantUseNotifTime = 4
+--Med Dealer 
+medDealerNotifText = "Welcome to my med shop, what can I get for you?"
 -----------------------------------------------------------------------------
 --Sounds
 fractureNotifSound = "buttons/button10.wav" -- Sound played on fracture, check sounds.txt for info on how to set them
@@ -92,7 +94,7 @@ medkitDisease = false -- Enables medkit to heal a fracture
 medkitRareDisease = false -- Enables medkit to heal a fracture
 adminMedkitHP = 100 --HP given to player on admin medkit use
 -----------------------------------------------------------------------------
--- Hovering text
+--Hovering text
 --painkiller
 painkillerColor = Color(55, 244, 152) --RGB Color Style
 painkillerColorOutline = Color(75, 75, 75)
@@ -109,8 +111,15 @@ diseaseColorOutline = Color(75, 75, 75)
 rareDiseaseCure = Color(55, 244, 152)
 rareDiseaseColorOutline = Color(75, 75, 75)
 --Medkit
-medkitCure = Color(55, 244, 152)
+medkitColor = Color(55, 244, 152)
 medkitColorOutline = Color(75, 75, 75)
 --Admin Medkit
 adminMedkitCure = Color(55, 244, 152)
 adminMedkitColorOutline = Color(75, 75, 75)
+--Medical Dealer
+medDealerColor = Color(55, 244, 152)
+medDealerColorOutline = Color(75, 75, 75)
+-----------------------------------------------------------------------------
+--Disable
+removeConditionOnDeath = true -- Removes all conditions when the player dies
+removeConditionOnJob = true  -- Removes all conditions when the player switches job

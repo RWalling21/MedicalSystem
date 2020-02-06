@@ -15,14 +15,14 @@ function ENT:Initialize()
     end
 end
 
-function ENT:Use(activator, caller)
-    if Condition[1] then
-        SMFracture(false, activator)
+function ENT:Use(ply, caller)
+    if ply.hasFracture then
+        SMFracture(false, ply)
         net.Start("SMFractureHealed")
-        net.Send(activator)
+        net.Send(ply)
         self:Remove()
     else
         net.Start("SMCant")
-        net.Send(activator)
+        net.Send(ply)
     end
 end
