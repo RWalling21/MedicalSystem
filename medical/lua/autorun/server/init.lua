@@ -3,7 +3,7 @@
 -- Simple Mediucal
 -- v1.0.00 [2/2/2020]
 ---------------------------
--- Made by Beb (AKA Terry)
+-- Made by Beb
 ---------------------------
 ---------------------------
 -- SETUP
@@ -33,7 +33,7 @@ hook.Add("PlayerAuthed", "SMAuth", function(ply)
 end)
 
 hook.Add("GetFallDamage", "SMFallDamage", function(ply, speed)
-    if speed > fractureFallSpeed and ply.hasFracture == false then
+    if speed >= fractureFallSpeed and ply.hasFracture == false then
         SMFracture(true, ply)
     end
 end)
